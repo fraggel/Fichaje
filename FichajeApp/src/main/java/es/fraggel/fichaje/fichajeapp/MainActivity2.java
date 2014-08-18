@@ -115,10 +115,10 @@ public class MainActivity2 extends Activity implements  AdapterView.OnItemSelect
                 String ef=(String)listaEF.get(xx);
                 total=total+(Integer.parseInt(ef)-Integer.parseInt(sf));
             }
-            horaFinCalc=String.valueOf(Integer.parseInt(horaFinCalc)+total);
+            horaFinCalc=String.valueOf(Integer.parseInt(horaFinCalc));
             BigDecimal bd = null;
             BigDecimal bd2 = null;
-            bd = new BigDecimal((Integer.parseInt(horaFinCalc) - Integer.parseInt(horaInicioCalc)));
+            bd = new BigDecimal((Integer.parseInt(horaFinCalc) - (Integer.parseInt(horaInicioCalc)+total)));
             int[] intsA = splitToComponentTimes(bd);
             int tempo=0;
             int[] intsB=intsA;
@@ -133,9 +133,9 @@ public class MainActivity2 extends Activity implements  AdapterView.OnItemSelect
             intsBB = splitToComponentTimes(bd);
             if(tempo!=0){
                 if(finestimado){
-                    texto.setText("Estimado:" +String.valueOf(intsA[0] + ":" + intsA[1] + ":" + intsA[2]) + "\n FALTAN: "+tempo+" minutos\nDEBERIA SALIR A "+intsBB[0]+":"+intsBB[1]+":"+intsBB[2]);
+                    texto.setText("Estimado:" +String.valueOf(intsA[0] + ":" + intsA[1] + ":" + intsA[2]) + "\n FALTAN: "+(tempo+(splitToComponentTimes(new BigDecimal(total))[1]))+" minutos\nDEBERIA SALIR A "+intsBB[0]+":"+intsBB[1]+":"+intsBB[2]);
                 }else {
-                    texto.setText(String.valueOf(intsA[0] + ":" + intsA[1] + ":" + intsA[2]) + "\n FALTAN: "+tempo+" minutos\nDEBERIA SALIR A "+intsBB[0]+":"+intsBB[1]+":"+intsBB[2]);
+                    texto.setText(String.valueOf(intsA[0] + ":" + intsA[1] + ":" + intsA[2]) + "\n FALTAN: "+(tempo+(splitToComponentTimes(new BigDecimal(total))[1]))+" minutos\nDEBERIA SALIR A "+intsBB[0]+":"+intsBB[1]+":"+intsBB[2]);
                 }
 
             }else {
