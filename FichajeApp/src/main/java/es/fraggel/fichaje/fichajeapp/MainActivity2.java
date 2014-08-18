@@ -133,13 +133,13 @@ public class MainActivity2 extends Activity implements  AdapterView.OnItemSelect
             intsBB = splitToComponentTimes(bd);
             if(tempo!=0){
                 if(finestimado){
-                    texto.setText("Estimado:" +String.valueOf(intsA[0] + ":" + intsA[1] + ":" + intsA[2]) + "\n FALTAN: "+(tempo+(splitToComponentTimes(new BigDecimal(total))[1]))+" minutos\nDEBERIA SALIR A "+intsBB[0]+":"+intsBB[1]+":"+intsBB[2]);
+                    texto.setText("-Estimado:" +String.valueOf(intsA[0] + ":" + intsA[1] + ":" + intsA[2]) + "\n-FALTAN: "+(tempo+(splitToComponentTimes(new BigDecimal(total))[1]))+" minutos\n-DEBERIA SALIR A "+intsBB[0]+":"+intsBB[1]+":"+intsBB[2]);
                 }else {
-                    texto.setText(String.valueOf(intsA[0] + ":" + intsA[1] + ":" + intsA[2]) + "\n FALTAN: "+(tempo+(splitToComponentTimes(new BigDecimal(total))[1]))+" minutos\nDEBERIA SALIR A "+intsBB[0]+":"+intsBB[1]+":"+intsBB[2]);
+                    texto.setText(String.valueOf(intsA[0] + ":" + intsA[1] + ":" + intsA[2]) + "\n-FALTAN: "+(tempo+(splitToComponentTimes(new BigDecimal(total))[1]))+" minutos\n-DEBERIA SALIR A "+intsBB[0]+":"+intsBB[1]+":"+intsBB[2]);
                 }
 
             }else {
-                    texto.setText("Tiempo Actual: "+String.valueOf(intsA[0] + ":" + intsA[1] + ":" + intsA[2]) + "");
+                    texto.setText("-Tiempo Actual: "+String.valueOf(intsA[0] + ":" + intsA[1] + ":" + intsA[2]) + "");
             }
             bd = new BigDecimal(Integer.parseInt(horaInicioCalc));
             int[] intsAA = splitToComponentTimes(bd);
