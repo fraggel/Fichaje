@@ -2,7 +2,6 @@ package es.fraggel.fichaje.fichajeapp;
 
 import android.app.Activity;
 import android.os.Environment;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -115,7 +114,7 @@ public class MainActivity2 extends Activity implements  AdapterView.OnItemSelect
                 String ef=(String)listaEF.get(xx);
                 total=total+(Integer.parseInt(ef)-Integer.parseInt(sf));
             }
-            horaFinCalc=String.valueOf(Integer.parseInt(horaFinCalc)-total);
+            horaFinCalc=String.valueOf(Integer.parseInt(horaFinCalc)+total);
             BigDecimal bd = null;
             BigDecimal bd2 = null;
             bd = new BigDecimal((Integer.parseInt(horaFinCalc) - Integer.parseInt(horaInicioCalc)));
@@ -129,7 +128,7 @@ public class MainActivity2 extends Activity implements  AdapterView.OnItemSelect
                 intsB = splitToComponentTimes(bd);
                 tempo=tempo+1;
             }
-            bd = new BigDecimal((Integer.parseInt(horaFinCalc)));
+            bd = new BigDecimal((Integer.parseInt(horaFinCalc)+total));
             intsBB = splitToComponentTimes(bd);
             if(tempo!=0){
                 if(finestimado){
