@@ -88,6 +88,7 @@ public class MainActivity2 extends Activity implements  AdapterView.OnItemSelect
                 }
                 linea = br.readLine();
             }
+            br.close();
             horaInicioCalc = String.valueOf((Integer.parseInt(horaInicioLeido.substring(0, 2)) * 3600) + (Integer.parseInt(horaInicioLeido.substring(2, 4)) * 60) + (Integer.parseInt(horaInicioLeido.substring(4, 6))));
             boolean finestimado=false;
             if (horaFinLeido != null && !"".equals(horaFinLeido.trim())) {
@@ -140,63 +141,22 @@ public class MainActivity2 extends Activity implements  AdapterView.OnItemSelect
             }else {
                     texto.setText("Tiempo Actual: "+String.valueOf(intsA[0] + ":" + intsA[1] + ":" + intsA[2]) + "");
             }
-            /*for(int xx=0;xx<listaSF.size();xx++){
-                sf=sf+Long.parseLong((String)listaSF.get(xx));
-            }
-            for(int xx=0;xx<listaEF.size();xx++){
-                ef=ef+Long.parseLong((String)listaEF.get(xx));
-            }*/
-            /*long horaInicio=0L;
-            ArrayList listaSF=new ArrayList();
-            ArrayList listaEF=new ArrayList();
-            long horaFin=0L;
-            while(linea!=null){
-                String tipo=linea.split("--")[1];
-                if("EN".equals(tipo)){
-                    horaInicio=Long.parseLong(linea.split("--")[0]);
-                }else if("SF".equals(tipo)){
-                    listaSF.add(linea.split("--")[0]);
-                }else if("EF".equals(tipo)){
-                    listaEF.add(linea.split("--")[0]);
-                }else if("SA".equals(tipo)){
-                    horaFin=Long.parseLong(linea.split("--")[0]);
-                }
-                linea=br.readLine();
-            }
-            if(horaFin==0L){
-                Calendar cc=Calendar.getInstance();
-                cc.set(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), 15, 00, 00);
-                horaFin=cc.getTimeInMillis();
-            }
-            long sf=0L;
-            long ef=0L;
+            bd = new BigDecimal(Integer.parseInt(horaInicioCalc));
+            int[] intsAA = splitToComponentTimes(bd);
+            texto.setText(texto.getText()+"\nEN: "+intsAA[0]+":"+intsAA[1]+":"+intsAA[2]);
             for(int xx=0;xx<listaSF.size();xx++){
-                sf=sf+Long.parseLong((String)listaSF.get(xx));
+                String sf=(String)listaSF.get(xx);
+                String ef=(String)listaEF.get(xx);
+                int[] ints = splitToComponentTimes(new BigDecimal(Integer.parseInt(sf)));
+                int[] ints1 = splitToComponentTimes(new BigDecimal(Integer.parseInt(ef)));
+                texto.setText(texto.getText()+"\nSF: "+ints[0]+":"+ints[1]+":"+ints[2]+"\nEF: "+ints1[0]+":"+ints1[1]+":"+ints1[2]);
             }
-            for(int xx=0;xx<listaEF.size();xx++){
-                ef=ef+Long.parseLong((String)listaEF.get(xx));
+            if (horaFinLeido != null && !"".equals(horaFinLeido.trim())) {
+                String horaFinn = String.valueOf((Integer.parseInt(horaFinLeido.substring(0, 2)) * 3600) + (Integer.parseInt(horaFinLeido.substring(2, 4)) * 60) + (Integer.parseInt(horaFinLeido.substring(4, 6))));
+                bd = new BigDecimal((Integer.parseInt(horaFinn)));
+                int[] intsAAA = splitToComponentTimes(bd);
+                texto.setText(texto.getText()+"\nSA: "+intsAAA[0]+":"+intsAAA[1]+":"+intsAAA[2]);
             }
-            Calendar fff=Calendar.getInstance();
-            fff.setTimeInMillis(ef-sf);
-
-            Calendar in=Calendar.getInstance();
-            in.setTimeInMillis((horaFin-horaInicio));
-
-            Calendar total=Calendar.getInstance();
-            total.setTimeInMillis(in.getTimeInMillis()-fff.getTimeInMillis());
-            Calendar totalTemp=Calendar.getInstance();
-            totalTemp.setTimeInMillis(total.getTimeInMillis());
-            int temporal=0;
-
-            while((totalTemp.get(Calendar.HOUR))<7){
-                totalTemp.roll(Calendar.MINUTE,true);
-                temporal=temporal+1;
-            }
-            if(total.getTimeInMillis()!=totalTemp.getTimeInMillis()){
-                Toast.makeText(getApplicationContext(), "Necesitas aún "+temporal+" minutos", Toast.LENGTH_SHORT).show();
-            }
-            texto.setText(total.get(Calendar.HOUR_OF_DAY)+":"+total.get(Calendar.MINUTE)+":"+total.get(Calendar.SECOND));
-            */
         }catch(Exception e){
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
         }
